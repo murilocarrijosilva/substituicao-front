@@ -1,0 +1,59 @@
+<div class="turma-component">
+  <p-panel header="Cadastrar">
+      <form>
+          <div class="p-grid p-nogutter form-width">
+            <div class="p-col-6">
+              <label>Ano</label>
+              <input [(ngModel)]="turma.ano" name="ano" type="text" pInputText placeholder="Ano" />
+            </div>
+            <div class="p-col-6">
+              <label>Curso</label>
+              <div>
+                <p-dropdown placeholder="Selecionar curso" [style]="{'width':'100%'}" [options]="cursoDrop" [(ngModel)]="turma.curso" name="curso"></p-dropdown>
+              </div>
+            </div>
+            <div class="p-col-2 p-offset-5">
+              <button (click)="salvar(atualizando)" style="width: 100%; margin: 4px;" pButton type="submit" [label]="atualizando? 'Atualizar' : 'Enviar'"></button>
+					    <button *ngIf="atualizando" (click)="cancelarEdicao()" style="width: 100%; margin: 4px;" pButton type="submit" label="Cancelar"></button>
+            </div>
+          </div>
+        </form>
+  </p-panel>
+
+  <div class="p-grid p-nogutter form-width">
+      <div class="p-col-12">
+        <p-table [value]="listaTurma" [paginator]="true" [rows]="7" [autoLayout]="true">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Ano</th>
+            <th>Curso</th>
+            <th></th>
+          </tr>
+          <tr>
+            <th>
+              <input (input)="atualizarTabela()" [(ngModel)]="filtro.ano" type="text" pInputText style="width:100%" placeholder="Filtar nome">
+            </th>
+            <th>
+              <input (input)="atualizarTabela()" [(ngModel)]="filtro.curso" type="text" pInputText style="width:100%" placeholder="Filtar curso">
+            </th>
+            <th></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-turma>
+          <tr>
+            <td>{{turma.ano}}</td>
+            <td>{{turma.curso.nome}}</td>
+            <td>
+              <div style="text-align:center;">
+                <button (click)="editar(turma)" pButton type="button" icon="pi pi-pencil" iconPos="left" style="padding:0 10px; margin: 0 3px;"></button>
+                <button (click)="excluir(turma)" pButton type="button" icon="pi pi-trash" iconPos="left" style="padding:0 10px; margin: 0 3px;"></button>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+        </p-table>
+      </div>
+    </div>
+</div>
+
+<p-confirmDialog header="Confirmar" icon="pi pi-exclamation-triangle"></p-confirmDialog>

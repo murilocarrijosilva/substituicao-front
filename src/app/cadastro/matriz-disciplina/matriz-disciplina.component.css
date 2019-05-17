@@ -1,0 +1,13 @@
+input {
+    width: 100%;
+}
+
+.matriz-disciplina-component {
+    width: 75%;
+    margin: auto;
+}
+
+.form-width > div {
+    box-sizing: border-box;
+    padding: 10px;
+}

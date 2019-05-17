@@ -1,0 +1,22 @@
+<div class="login-component">
+  <div class="p-grid p-nogutter">
+    <div class="p-col-4 p-offset-4 login">
+      <form>
+        <div class="intpad p-grid p-nogutter">
+          <div class="p-col-12">
+            <span style="font-size:2em; font-weight: bold;">Login</span>
+          </div>
+          <div class="p-col-12">
+            <input style="width:100%;" type="text" #u pInputText placeholder="Login">
+          </div>
+          <div class="p-col-12">
+            <input style="width:100%;" type="password" #p pPassword [feedback]="false" placeholder="Password">
+          </div>
+          <div class="p-col-4 p-offset-4">
+            <button (click)="login(u.value, p.value)" type="submit" style="width:100%;" label="Entrar" pButton></button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>  
+</div>

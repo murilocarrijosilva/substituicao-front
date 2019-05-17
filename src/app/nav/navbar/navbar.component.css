@@ -1,0 +1,27 @@
+.navbar-component {
+    height: 50px;
+    background: var(--background);  
+}
+
+.name {
+    font-size: 1.2em;
+    color: white;
+    padding-right: 10px;
+
+    text-decoration: none;
+}
+
+.name:hover {
+    text-decoration: underline;
+}
+
+/* buttons icons */
+i {
+    padding: 5px;
+    font-size: 1.8em;
+    color: white;
+}
+
+.exit {
+    color: #d01919;
+}

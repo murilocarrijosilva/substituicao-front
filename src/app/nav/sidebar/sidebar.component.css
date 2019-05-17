@@ -1,0 +1,11 @@
+.sidebar-component {
+    height: 100vh;
+    background: var(--background);
+}
+
+.title {
+    padding: 15px 10px;
+    font-size: 2em;
+    font-weight: bold; 
+    color: white;
+}

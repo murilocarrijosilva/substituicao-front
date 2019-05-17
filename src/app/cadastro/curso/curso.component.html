@@ -1,0 +1,69 @@
+<div class="curso-component">
+	<p-panel header="Cadastrar">
+		<form>
+			<div class="p-grid p-nogutter form-width">
+				<div class="p-col-6">
+					<label>Nome</label>
+					<input [(ngModel)]="curso.nome" name="nome" type="text" pInputText placeholder="Nome" />
+				</div>
+				<div class="p-col-6">
+					<label>Modalidade</label>
+					<div>
+						<p-dropdown placeholder="Selecionar modalidade" [style]="{'width':'100%'}" [options]="modalidades" [(ngModel)]="curso.modalidade" name="modalidade"></p-dropdown>
+					</div>
+				</div>
+				<div class="p-col-6">
+					<label>Campus</label>
+					<div>
+						<p-dropdown placeholder="Selecionar campus" [style]="{'width':'100%'}" [options]="campusDrop" [(ngModel)]="curso.campus" name="campus"></p-dropdown>
+					</div>
+				</div>
+				<div class="p-col-2 p-offset-5">
+					<button (click)="salvar(atualizando)" style="width: 100%; margin: 4px;" pButton type="submit" [label]="atualizando? 'Atualizar' : 'Enviar'"></button>
+					<button *ngIf="atualizando" (click)="cancelarEdicao()" style="width: 100%; margin: 4px;" pButton type="submit" label="Cancelar"></button>
+				</div>
+			</div>
+		</form>
+	</p-panel>
+	<div class="p-grid p-nogutter form-width">
+		<div class="p-col-12">
+			<p-table [value]="listaCurso" [paginator]="true" [rows]="7" [autoLayout]="true">
+			<ng-template pTemplate="header">
+				<tr>
+					<th>Nome</th>
+					<th>Modalidade</th>
+					<th>Campus</th>
+					<th></th>
+				</tr>
+				<tr>
+					<th>
+						<input (input)="atualizarTabela()" [(ngModel)]="filtro.nome" type="text" pInputText style="width:100%" placeholder="Filtar nome">
+					</th>
+					<th>
+						<input (input)="atualizarTabela()" [(ngModel)]="filtro.modalidade" type="text" pInputText style="width:100%" placeholder="Filtar modalidade">
+					</th>
+					<th>
+						<input (input)="atualizarTabela()" [(ngModel)]="filtro.campus" type="text" pInputText style="width:100%" placeholder="Filtar campus">
+					</th>
+					<th></th>
+				</tr>
+			</ng-template>
+			<ng-template pTemplate="body" let-curso>
+				<tr>
+					<td>{{curso.nome}}</td>
+					<td>{{curso.modalidade |titlecase}}</td>
+					<td>{{curso.campus.nome}}</td>
+					<td>
+						<div style="text-align:center;">
+							<button (click)="editar(curso)" pButton type="button" icon="pi pi-pencil" iconPos="left" style="padding:0 10px; margin: 0 3px;"></button>
+							<button (click)="excluir(curso)" pButton type="button" icon="pi pi-trash" iconPos="left" style="padding:0 10px; margin: 0 3px;"></button>
+						</div>
+					</td>
+				</tr>
+			</ng-template>
+			</p-table>
+		</div>
+	</div>
+</div>
+
+<p-confirmDialog header="Confirmar" icon="pi pi-exclamation-triangle"></p-confirmDialog>
